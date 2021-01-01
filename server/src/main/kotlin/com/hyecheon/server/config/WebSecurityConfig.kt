@@ -51,7 +51,6 @@ class WebSecurityConfig(
             .antMatchers("/api/v1/login/**").permitAll()
             .antMatchers("/api/v1/**").hasAnyAuthority(Role.USER.code)
             .anyRequest().authenticated()
-
             .and()
             .apply(securityConfigurerAdapter())
     }

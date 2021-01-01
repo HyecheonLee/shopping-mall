@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    include: db
   jackson:
     serialization:
       INDENT_OUTPUT: true
