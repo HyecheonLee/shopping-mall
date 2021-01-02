@@ -9,14 +9,15 @@ import javax.servlet.http.HttpServletResponse
 
 
 @Component
-class JwtAuthenticationEntryPoint : AuthenticationEntryPoint {
-    private val handlerExceptionResolver: HandlerExceptionResolver? = null
+class JwtAuthenticationEntryPoint(
+    private val handlerExceptionResolver: HandlerExceptionResolver
+) : AuthenticationEntryPoint {
     override fun commence(
         request: HttpServletRequest,
         response: HttpServletResponse,
         authException: AuthenticationException
     ) {
         //response.sendError(HttpServletResponse.SC_UNAUTHORIZED, authException.getMessage());
-        handlerExceptionResolver!!.resolveException(request, response, null, authException)
+        handlerExceptionResolver.resolveException(request, response, null, authException)
     }
 }

@@ -8,15 +8,20 @@ import javax.validation.constraints.Size
 
 @Entity
 data class Member(
-    @JsonIgnore
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonIgnore
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
 
-    @Column(length = 50, unique = true)
+    @Column(length = 64)
     @NotNull
     @Size(min = 4, max = 50)
-    val username: String? = null,
+    val name: String? = null,
+
+    @NotNull
+    @Column(length = 64, unique = true)
+    @Size(min = 4, max = 50)
+    val email: String? = null,
 
     @JsonIgnore
     @Column(length = 100)
@@ -24,13 +29,16 @@ data class Member(
     @Size(min = 4, max = 100)
     val password: String? = null,
 
+    @JsonIgnore
+    @Column(length = 100)
     @NotNull
-    @Column(length = 50, unique = true)
-    @Size(min = 4, max = 50)
-    val email: String? = null,
+    @Size(min = 4, max = 100)
+    val lastName: String? = null,
 
-    @NotNull
     @Column(length = 50)
     @Size(min = 4, max = 50)
-    val role: String? = null,
+    val role: String = "ROLE_USER",
+
+    @Lob
+    val image: String? = null,
 )

@@ -3,8 +3,7 @@ package com.hyecheon.server.config
 import com.hyecheon.server.core.security.Role
 import com.hyecheon.server.exception.JwtAccessDeniedHandler
 import com.hyecheon.server.exception.JwtAuthenticationEntryPoint
-import com.hyecheon.server.provider.security.JwtAuthTokenProvider
-import com.hyecheon.server.security.JWTConfigurer
+import com.hyecheon.server.core.security.JwtAuthTokenProvider
 import org.springframework.context.annotation.Bean
 import org.springframework.http.HttpMethod
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
@@ -14,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
+import org.springframework.security.authentication.AuthenticationManager
 
 
 @EnableWebSecurity
@@ -48,7 +48,8 @@ class WebSecurityConfig(
 
             .and()
             .authorizeRequests()
-            .antMatchers("/api/v1/login/**").permitAll()
+            .antMatchers("/api/v1/users/login").permitAll()
+            .antMatchers("/api/v1/users/register").permitAll()
             .antMatchers("/api/v1/**").hasAnyAuthority(Role.USER.code)
             .anyRequest().authenticated()
             .and()
@@ -65,5 +66,11 @@ class WebSecurityConfig(
 
     private fun securityConfigurerAdapter(): JWTConfigurer {
         return JWTConfigurer(jwtAuthTokenProvider)
+    }
+
+    @Bean
+    @Throws(java.lang.Exception::class)
+    override fun authenticationManagerBean(): AuthenticationManager {
+        return super.authenticationManagerBean()
     }
 }

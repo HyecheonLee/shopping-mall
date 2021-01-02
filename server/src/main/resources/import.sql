@@ -1,1 +1,2 @@
-INSERT INTO MEMBER (ID, USERNAME, PASSWORD, EMAIL, ROLE) VALUES (1, 'eddy', '$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC', 'sieunkr@gmail.com', 'ROLE_USER');
+INSERT INTO MEMBER (ID, NAME, PASSWORD, EMAIL, ROLE) VALUES (1, 'hyecheon', '$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','rainbow0616@naver.com', 'ROLE_USER');
+insert into member (email, image, last_name, name, password, role) values ('rainbow880616@gmail.com', NULL, NULL, 'hyecheon','$2a$10$udoPwmeJf5221mlaJM4SYOVsk1vgBa4ul/rwgBO2BR1FUaNNZyQgC', 'ROLE_USER');

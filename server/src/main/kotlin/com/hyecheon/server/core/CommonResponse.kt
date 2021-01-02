@@ -1,7 +1,10 @@
 package com.hyecheon.server.core
 
-data class CommonResponse(
-    val message: String? = null,
-    val status: Int = 0,
-     val code: String? = null
+import com.fasterxml.jackson.annotation.JsonInclude
+
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
+data class CommonResponse<T>(
+    val data: T? = null,
+    val status: Int = -1,
+    val code: String? = null
 )
